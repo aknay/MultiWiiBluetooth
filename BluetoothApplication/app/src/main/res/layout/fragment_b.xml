@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#FCFBE3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Fragment B"
+        android:id="@+id/textViewFB"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Devices"
+        android:id="@+id/button_listDevices"
+        android:layout_below="@+id/switch_BluetoothDevice"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_listDevices"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textViewFB"
+        android:layout_alignEnd="@+id/textViewFB"
+        android:layout_alignLeft="@+id/textViewFB"
+        android:layout_alignStart="@+id/textViewFB"
+        android:layout_below="@+id/button_listDevices" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sen Data"
+        android:id="@+id/button_sendData"
+        android:layout_above="@+id/listView_listDevices"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BT Switch"
+        android:id="@+id/switch_BluetoothDevice"
+        android:checked="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arm/Disarm"
+        android:id="@+id/switch_armDisarm"
+        android:layout_toStartOf="@+id/listView_listDevices"
+        android:checked="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_toStartOf="@+id/listView_listDevices"
+        android:layout_toEndOf="@+id/button_sendData"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/listView_listDevices"
+        android:layout_alignTop="@+id/listView_listDevices"
+        android:layout_alignParentBottom="true">
+
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Pitch"-->
+            <!--android:id="@+id/textView_pitch" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Roll"-->
+            <!--android:id="@+id/textView_rcValues" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Yaw"-->
+            <!--android:id="@+id/textView_yaw" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="AUX1"-->
+            <!--android:id="@+id/textView_aux1" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="AUX2"-->
+            <!--android:id="@+id/textView_aux2" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="AUX3"-->
+            <!--android:id="@+id/textView_aux3" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="AUX4"-->
+            <!--android:id="@+id/textView_aux4" />-->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/linearLayout3"
+            android:layout_toEndOf="@+id/button_sendData"
+            android:id="@+id/linearLayout2"
+            android:layout_alignTop="@+id/textView_rcValues"
+            android:layout_toLeftOf="@+id/linearLayout3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_zVal"
+                android:layout_toStartOf="@+id/listView_listDevices"
+                android:layout_below="@+id/textView_yVal"
+                android:layout_toRightOf="@+id/button_sendData"
+                android:layout_toEndOf="@+id/button_sendData" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xVal"
+                android:id="@+id/textView_xVal"
+                android:layout_toStartOf="@+id/linearLayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/linearLayout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="yVal"
+                android:id="@+id/textView_yVal"
+                android:layout_below="@+id/switch_armDisarm"
+                android:layout_toRightOf="@+id/button_sendData"
+                android:layout_toEndOf="@+id/button_sendData"
+                 />
+        </LinearLayout>
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar_yaw"
+            android:rotation="270"
+            android:progress="50"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_toEndOf="@+id/listView_listDevices"
+        android:layout_alignTop="@+id/listView_listDevices"
+        android:layout_toStartOf="@+id/button_listDevices"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/listView_listDevices"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="false"
+        android:id="@+id/linearLayout3">
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar_throttle"
+            android:rotation="270"
+
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RC Values"
+        android:id="@+id/textView_rcValues"
+        android:layout_below="@+id/switch_armDisarm"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
