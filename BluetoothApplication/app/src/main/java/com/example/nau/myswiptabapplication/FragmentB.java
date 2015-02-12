@@ -74,6 +74,9 @@ public class FragmentB extends Fragment implements SensorEventListener {
     ListView listView;
     private static String address = "00:14:03:02:18:88";
     boolean bluetoothConnected = false;
+
+
+    ArrayList listOfBtDeviceAddress = new ArrayList();
     //
 //    BluetoothDevice bt;
     private BluetoothSocket btSocket = null;
@@ -95,7 +98,6 @@ public class FragmentB extends Fragment implements SensorEventListener {
 
         myBlueTooth = new MyBlueTooth(getActivity());
 
-//        buttonOn = (Button) v.findViewById(R.id.button_turnOn);
         buttonList = (Button) v.findViewById(R.id.button_listDevices);
         buttonSendData = (Button) v.findViewById(R.id.button_sendData);
         bluetoothConnected = false;
@@ -103,6 +105,7 @@ public class FragmentB extends Fragment implements SensorEventListener {
         listView = (ListView) v.findViewById(R.id.listView_listDevices);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, listItems);
         mArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, listItems);
+
         listView.setAdapter(adapter);
         btAdpt = BluetoothAdapter.getDefaultAdapter();
 
@@ -156,9 +159,6 @@ public class FragmentB extends Fragment implements SensorEventListener {
                 throttleValue = (int) map(i, 0, 100, 1000, 2000);
                 rcControl.setThrottleValue(throttleValue);
                 if (bluetoothConnected)        myBlueTooth.sendViaBt(rcControl.getMSPCode());
-
-//                textFB.setText(String.valueOf(throttleValue));
-//                myBlueTooth.sendViaBt()
             }
 
             @Override
@@ -254,6 +254,7 @@ public class FragmentB extends Fragment implements SensorEventListener {
                     for (BluetoothDevice device : pairedDevices) {
                         // Add the name and address to an array adapter to show in a ListView
                         mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+                        listOfBtDeviceAddress.add(device.getAddress());
                     }
                 }
                 listView.setAdapter(mArrayAdapter);
@@ -269,8 +270,15 @@ public class FragmentB extends Fragment implements SensorEventListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getActivity(),
                         ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+
+                //get string from textView
+                TextView t = (TextView)view;
+                String tt = t.getText().toString();
+                //from string, remove the name from the string and only get the last 17 char for device address
+                String deviceAddress = tt.substring(tt.length()-17);
+
                 if (bluetoothConnected == false) {
-                    myBlueTooth.connectBt();
+                    myBlueTooth.connectBt(deviceAddress);
                     bluetoothConnected = true;
                 }
             }

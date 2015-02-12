@@ -24,17 +24,12 @@ import java.util.UUID;
  */
 public class MyBlueTooth extends Activity {
     private BluetoothAdapter bluetoothAdapter;
-//    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
 
 
     private Set<BluetoothDevice> pairedDevices;
     private OutputStream outStream = null;
-    //
-    ArrayList<String> listItems = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
-    ArrayAdapter<String> mArrayAdapter;
-    ListView listView;
-    private static String address = "00:14:03:02:18:88";
+
     boolean bluetoothConnected = false;
     private BluetoothSocket btSocket = null;
     Context context;
@@ -52,13 +47,7 @@ public class MyBlueTooth extends Activity {
     public void turnOnBt() {
         if (!bluetoothAdapter.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//            context.startActivityForResult(turnOn, 0);
             context.startActivity(turnOn);
-//            Toast.makeText(getActivity(), "Turned on"
-//                    , Toast.LENGTH_LONG).show();
-        } else {
-//            Toast.makeText(getActivity(), "Already on",
-//                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -70,9 +59,10 @@ public class MyBlueTooth extends Activity {
         }
     }
 
-    public void connectBt() {
-
-        BluetoothDevice device = bluetoothAdapter.getRemoteDevice(address);
+    public void connectBt(String deviceAddress) {
+        Log.d("BT", "trying to connect");
+        BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
+        //Hint: If you are connecting to a Bluetooth serial board then try using the well-known SPP UUID 00001101-0000-1000-8000-00805F9B34FB.
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
         try {
             btSocket = device.createRfcommSocketToServiceRecord(uuid);
@@ -87,9 +77,9 @@ public class MyBlueTooth extends Activity {
         try {
             btSocket.connect();
             bluetoothConnected = true;
-//            Toast.makeText(getActivity(), "Okay",
-//                    Toast.LENGTH_LONG).show();
-            // out.append("\n...Connection established and data link opened...");
+
+            Log.d("BT", "connected");
+
         } catch (IOException e) {
             try {
                 btSocket.close();
@@ -97,9 +87,6 @@ public class MyBlueTooth extends Activity {
 //                        AlertBox("Fatal Error", "In onResume() and unable to close socket during connection failure" + e2.getMessage() + ".");
             }
         }
-
-        // Create a data stream so we can talk to server.
-//                out.append("\n...Sending message to server...");
 
         try {
             outStream = btSocket.getOutputStream();
@@ -110,9 +97,6 @@ public class MyBlueTooth extends Activity {
     }
 
     public void sendData(String message) {
-//        byte[] msgBuffer = message.getBytes();
-
-        int data[] = new int[]{10, 20, 30, 40, 50, 60, 71, 80, 90, 91};
 
         byte[] msgBuffer = new byte[]{36, 77, 60, 16, -56, -36, 5, -36, 5, -36, 5, -24, 3, -24, 3, -24, 3, -24, 3, -48, 7, -42};
         Log.d("byte", "send it arm");
@@ -128,14 +112,10 @@ public class MyBlueTooth extends Activity {
     public void sendViaBt(List<Byte> code)
 
     {
-
         byte[] msgBuffer = new byte[code.size()];
 
         for (int i = 0; i < code.size(); i++) {
-
             msgBuffer[i] = code.get(i);
-//            String message = new String(String.valueOf(msgBuffer[i]));
-//            Log.d("tell me",message);
         }
 
         try {
@@ -150,22 +130,6 @@ public class MyBlueTooth extends Activity {
     public void sendData(byte[] msgBuffer) {
         byte[] imsgBuffer = new byte[]{36, 77, 60, 16, -56, -36, 5, -36, 5, -36, 5, -24, 3, -24, 3, -24, 3, -24, 3, -48, 7, -42};
         Log.d("byte", "send it arm");
-//        byte[] msgBuffer = message.getBytes();
-
-//        int data[] = new int[]{10, 20, 30, 40, 50, 60, 71, 80, 90, 91};
-//        int i = msgBuffer.length;
-
-
-//        CharSequence seq = null;
-//        Charset charset = null;
-
-//        byte[] bytes = seq.toString().getBytes(charset);
-//        Charset charset = Charset.forName("UTF-8");
-//        CharSequence seq2 = new String(msgBuffer, charset);
-
-//        CharSequence x = new String(msgBuffer[0], "US-ASCII");
-
-
         for (int a = 0; a < msgBuffer.length; a++) {
 
             String message = new String(String.valueOf(msgBuffer[a]));

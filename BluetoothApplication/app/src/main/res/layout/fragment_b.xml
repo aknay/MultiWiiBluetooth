@@ -28,11 +28,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/listView_listDevices"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textViewFB"
-        android:layout_alignEnd="@+id/textViewFB"
-        android:layout_alignLeft="@+id/textViewFB"
-        android:layout_alignStart="@+id/textViewFB"
-        android:layout_below="@+id/button_listDevices" />
+        android:layout_below="@+id/button_listDevices"
+        android:layout_toLeftOf="@+id/button_listDevices"
+        android:layout_alignLeft="@+id/textView_rcValues"
+        android:layout_alignStart="@+id/textView_rcValues" />
 
     <Button
         android:layout_width="wrap_content"
